@@ -3,6 +3,11 @@ const expect = require('chai').expect;
 const substitution = require('../src/substitution');
 
 describe('Substitution', () => {
+    it('Should return false if input or alphabet are missing', () => {
+        const actual = substitution();
+        const expected = false;
+        expect(actual).to.eql(expected);
+    })
     it('Should substitute letters with new alphabet', () => {
         const actual = substitution("thinkful", "xoyqmcgrukswaflnthdjpzibev");
         const expected = 'jrufscpw';
@@ -20,11 +25,13 @@ describe('Substitution', () => {
     })
     it('The alphabet parameter must be string of exactly 26 characters. Otherwise, it should return false.', () => {
         const actual = substitution("thinkful", "short");
-        expect(actual).to.be.false;
+        const expected = false;
+        expect(actual).to.eql(expected);
     })
     it('All of the characters in the alphabet parameter must be unique. Otherwise, it should return false.', () => {
         const actual =substitution("thinkful", "abcabcabcabcabcabcabcabcyz");
-        expect(actual).to.be.false;
+        const expected = false;
+        expect(actual).to.eql(expected);
     })
     it('Should decode message', () => {
         const actual = substitution("jrufscpw", "xoyqmcgrukswaflnthdjpzibev", false);

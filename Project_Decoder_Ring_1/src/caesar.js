@@ -1,3 +1,4 @@
+
 function getDecodeChar(encodeChar, shift) {
     let decodeIndex = (encodeChar - 97) - shift;
     if(decodeIndex < 0){
@@ -5,10 +6,19 @@ function getDecodeChar(encodeChar, shift) {
     }
     return decodeIndex;
 }
+function getEncodeChar(decodeChar, shift){
+    let encodeIndex = decodeChar - 97 + shift;
+    if(encode > 26){
+        encodeIndex -= 26
+    }
+}
 
 function caesar(input, shift, encode = true) {
     if(!shift || shift === 0 || shift < -25 || shift > 25){
         return false;
+    }
+    if(shift < 0){
+        shift+=26;
     }
     let str = input.toLowerCase();
     let result = "";
@@ -34,7 +44,6 @@ function caesar(input, shift, encode = true) {
 }
 return result;
 }
-
 
 
 module.exports = caesar;

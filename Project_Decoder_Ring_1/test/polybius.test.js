@@ -3,14 +3,25 @@ const polybius = require("../src/polybius");
 const expect = require("chai").expect;
 
 describe("Polybius", () => {
+    it('Should return an encoded message', () => {
+        const actual = polybius("thinkful");
+        const expected = "4432423352125413";
+        expect(actual).to.eql(expected);
+    })
+    it('Should return a decoded message', () => {
+        const actual = polybius("3251131343 2543241341", false);
+        const expected = "hello world";
+        expect(actual).to.eql(expected);
+    })
     it("When encoding, your output should still be a string", () => {
         const actual = polybius("thinkful");
         const expected = "4432423352125413";
-        expect(actual).to.have.string(expected);
+        expect(actual).to.eql(expected);
     })
     it("When decoding, the number of characters in the string exluding spaces should be even. Otherwise, return false", () => {
         const actual = polybius("44324233521254134", false);
-        expect(actual).to.be.false;
+        const expected = false;
+        expect(actual).to.eql(expected);
     });
     it("Spaces should be maintained throughout.", () => {
         const actual = polybius("3251131343 2543241341", false);
@@ -27,4 +38,4 @@ describe("Polybius", () => {
         const expected = "th(i/j)nkful";
         expect(actual).to.eql(expected);
     })
-})
+}) 

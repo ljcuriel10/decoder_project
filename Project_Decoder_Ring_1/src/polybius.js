@@ -1,49 +1,74 @@
 const abc = {
-    11: 'A',
-    21: 'B',
-    31: 'C',
-    41: 'D',
-    51: 'E',
-    12: 'F',
-    22: 'G',
-    32: 'H',
-    42: 'I',
-    42: 'J',
-    52: 'K',
-    13: 'L',
-    23: 'M',
-    33: 'N',
-    43: 'O',
-    53: 'P',
-    14: 'Q',
-    24: 'R',
-    34: 'S',
-    44: 'T',
-    54: 'U',
-    15: 'V',
-    25: 'W',
-    35: 'X',
-    45: 'Y',
-    55: 'Z',
+    11: 'a',
+    21: 'b',
+    31: 'c',
+    41: 'd',
+    51: 'e',
+    12: 'f',
+    22: 'g',
+    32: 'h',
+    42: 'i',
+    42: 'j',
+    52: 'k',
+    13: 'l',
+    23: 'm',
+    33: 'n',
+    43: 'o',
+    53: 'p',
+    14: 'q',
+    24: 'r',
+    34: 's',
+    44: 't',
+    54: 'u',
+    15: 'v',
+    25: 'w',
+    35: 'x',
+    45: 'y',
+    55: 'z',
 }
+
+
 function polybius(input, encode = true) {
-    if(!encode){
-       return input.length % 2 == 0 ? true : false;
-    }
-    const str = input.toUpperCase();
+    let str = input.toLowerCase();
     let result = '';
-    for(let i = 0; i < str.length; i++){
-        let letters = str[i];
-        for(j in abc){
-            const compLetters = abc[j];
-            if(letters === compLetters){
-                result += j
-                continue
+    if(encode){
+        for(let i = 0; i < str.length; i++){
+            let letters = str[i];
+            if(letters === 'i'){
+                result += "42";
+            }else if(letters == ' '){
+                result += letters;
+                continue;
+            }
+            for(j in abc){
+                const compLetters = abc[j];
+                if(letters === compLetters){
+                    result += j;
+                } 
+            }
+        }
+    } else {
+        const newStr = input.split(' ').join('');
+        if(newStr.length % 2 != 0){
+            return false;
+        }
+        for(let i = 0; i < input.length; i+=2){
+            str = `${input[i]}${input[i+1]}`
+            if(str.includes(' ')){
+                result += " ";
+                i -= 1;
+            } else if(str == "42"){
+                result  += '(i/j)'
+            }else {
+                for(key in abc){
+                    if(str === key){
+                        result += abc[key]
+                    }
+                }
             }
         }
     }
-    console.log(result)
     return result;
-}
+} 
 
 module.exports = polybius;
