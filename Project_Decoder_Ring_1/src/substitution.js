@@ -1,4 +1,4 @@
-const abc = 'abcdefghijklmnopqrstuvwxyz';
+const abcStr = 'abcdefghijklmnopqrstuvwxyz';
 // function that checks that a string is unique
 function isUnique(str) {
     for (let i = 0; i < str.length; i++) {
@@ -27,7 +27,7 @@ function substitution(input, alphabet, encode = true) {
         // loop through input
         for (let i = 0; i < str.length; i++){
             const char = str[i]
-            let abcIndex =  abc.indexOf(char);
+            let abcIndex =  abcStr.indexOf(char);
             if(abcIndex <= -1){
                 result += char;
             }else {

@@ -9,7 +9,7 @@ function getDecodeChar(encodeChar, shift) {
 function getEncodeChar(decodeChar, shift){
     let encodeIndex = decodeChar - 97 + shift;
     if(encode > 26){
-        encodeIndex -= 26
+        encodeIndex -= 26;
     }
 }
 
